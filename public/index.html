@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Ас-Саляму Аляйкум</h3>
+    <form>
+        <p>autorization:</p>
+        name: <input type="text" id="input_name">
+        email: <input type="text" id="input_email">
+
+        <br>
+        <br><button type="submit">submit</button>
+        <script>
+            const inputName = document.getElementById('input_name');
+            const inputEmail = document.getElementById('input_email');
+            const form = document.forms[0];
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                fetch('/registration', {
+                    method: 'post',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({
+                        name: inputName.value,
+                        email: inputEmail.value
+                    })
+                }).then(res => res.json()).then(res => {
+                    console.log('res', res);
+                });
+                inputEmail.value = '';
+                inputName.value = '';
+            })
+        </script>
+
+    </form>
+
+    <form>
+
+        <p>autentification:</p>
+        name: <input type="text" id="input_name_auto">
+        email: <input type="text" id="input_email_auto">
+
+        <br><button type="submit">submit</button>
+
+    </form>
+
+
+    <script>
+        const inputNameAuto = document.getElementById('input_name_auto');
+        const inputEmailAuto = document.getElementById('input_email_auto');
+        const formAuto = document.forms[1];
+        console.log(formAuto);
+        formAuto.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            fetch('/authentication', {
+                method: 'post',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name: inputNameAuto.value,
+                    email: inputEmailAuto.value
+                })
+            }).then(res => res.json()).then(res => {
+                console.log('res', res);
+            });
+            inputNameAuto.value = '';
+            inputEmailAuto.value = '';
+        })
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
