@@ -59,9 +59,9 @@ app.post('/authentication', (req, res) => {
         else if(user) {
             const token = randtoken.generate(16);
             res.send({ token });
+        }else {
+            res.send({ user });
         }
-
-        res.send({ user });
     });
 });
 
