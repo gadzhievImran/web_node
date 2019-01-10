@@ -4,13 +4,16 @@ const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require('body-parser');
 const randtoken = require('rand-token');
 const objectId = require("mongodb").ObjectID;
+var cors = require('cors');
+
+
 
 const app = express();
 app.use( bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
-
+app.use(cors());
 const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
 
 let dbclient;
@@ -62,10 +65,16 @@ app.post('/authentication', (req, res) => {
                 if(err) return void console.log(err);
 
                 console.log(result.value);
-                res.send({ token });
+                // res.setHead
+                res.send({
+                    payload: {
+                        token
+                    },
+                    status: 'OK'
+                });
             });
         }else {
-            res.send({ user });
+            res.send('Enter correct password');
         }
     });
 });
