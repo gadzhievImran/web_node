@@ -10,15 +10,15 @@
 <body>
     <h3>Ас-Саляму Аляйкум</h3>
     <form>
-        <p>autorization:</p>
+        <p>autorization / registration:</p>
         name: <input type="text" id="input_name">
-        email: <input type="text" id="input_email">
+        password: <input type="text" id="input_password">
 
         <br>
         <br><button type="submit">submit</button>
         <script>
             const inputName = document.getElementById('input_name');
-            const inputEmail = document.getElementById('input_email');
+            const inputPassword = document.getElementById('input_password');
             const form = document.forms[0];
 
             form.addEventListener('submit', function(event) {
@@ -29,12 +29,12 @@
                     headers: {'Content-Type':'application/json'},
                     body: JSON.stringify({
                         name: inputName.value,
-                        email: inputEmail.value
+                        password: inputPassword.value
                     })
                 }).then(res => res.json()).then(res => {
                     console.log('res', res);
                 });
-                inputEmail.value = '';
+                inputPassword.value = '';
                 inputName.value = '';
             })
         </script>
@@ -45,7 +45,7 @@
 
         <p>autentification:</p>
         name: <input type="text" id="input_name_auto">
-        email: <input type="text" id="input_email_auto">
+        password: <input type="text" id="input_password_auto">
 
         <br><button type="submit">submit</button>
 
@@ -54,7 +54,7 @@
 
     <script>
         const inputNameAuto = document.getElementById('input_name_auto');
-        const inputEmailAuto = document.getElementById('input_email_auto');
+        const inputPasswordAuto = document.getElementById('input_password_auto');
         const formAuto = document.forms[1];
         formAuto.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -64,13 +64,13 @@
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({
                     name: inputNameAuto.value,
-                    email: inputEmailAuto.value
+                    password: inputPasswordAuto.value
                 })
             }).then(res => res.json()).then(res => {
                 console.log('res', res);
             });
             inputNameAuto.value = '';
-            inputEmailAuto.value = '';
+            inputPasswordAuto.value = '';
         })
     </script>
 

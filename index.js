@@ -3,6 +3,7 @@ const MongoClient = require("mongodb").MongoClient;
 
 const bodyParser = require('body-parser');
 const randtoken = require('rand-token');
+const objectId = require("mongodb").ObjectID;
 
 const app = express();
 app.use( bodyParser.json());       // to support JSON-encoded bodies
@@ -37,13 +38,11 @@ app.get('/api/users', (req, res) => {
 app.post('/registration', (req, res) => {
     if(!req.body) return res.sendStatus(400);
 
-    const { name, email } = req.body;
-    console.log(req.body);
-    const user = { name, email };
+    const { name, password } = req.body;
+    const user = { name, password };
     coll.insertOne(user, (err, result) => {
         if(err) return void err;
 
-        console.log('result', result);
         res.send(user);
     });
 });
@@ -51,14 +50,20 @@ app.post('/registration', (req, res) => {
 app.post('/authentication', (req, res) => {
     if(!req.body) return res.sendStatus(400);
 
-    const { name, email } = req.body;
-    const user = { name, email };
+    const { name, password } = req.body;
+    const user = { name, password };
 
     coll.findOne(user, (err, user) => {
         if(err) return void err;
         else if(user) {
             const token = randtoken.generate(16);
-            res.send({ token });
+
+            coll.findOneAndUpdate(user, { $set: { name, password, token }}, { returnOriginal: false }, (err, result) => {
+                if(err) return void console.log(err);
+
+                console.log(result.value);
+                res.send({ token });
+            });
         }else {
             res.send({ user });
         }
