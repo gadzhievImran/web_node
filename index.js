@@ -2,6 +2,7 @@ const express = require("express");
 const MongoClient = require("mongodb").MongoClient;
 
 const bodyParser = require('body-parser');
+const randtoken = require('rand-token');
 
 const app = express();
 app.use( bodyParser.json());       // to support JSON-encoded bodies
@@ -53,10 +54,13 @@ app.post('/authentication', (req, res) => {
     const { name, email } = req.body;
     const user = { name, email };
 
-    coll.findOne({ name, email }, (err, user) => {
+    coll.findOne(user, (err, user) => {
         if(err) return void err;
+        else if(user) {
+            const token = randtoken.generate(16);
+            res.send({ token });
+        }
 
-        console.log('user', user);
         res.send({ user });
     });
 });
