@@ -4,16 +4,18 @@ const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require('body-parser');
 const randtoken = require('rand-token');
 const objectId = require("mongodb").ObjectID;
-var cors = require('cors');
-
-
+const cors = require('cors');
 
 const app = express();
+
 app.use( bodyParser.json());       // to support JSON-encoded bodies
+
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
+
 app.use(cors());
+
 const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
 
 let dbclient;
@@ -23,8 +25,10 @@ app.use(express.static(__dirname + "/public"));
 
 mongoClient.connect((err, client) => {
     if(err) return void console.log(err);
+    dbclient = client;
     db = client.db('usersdb');
     coll = db.collection('users');
+    coll_messages = db.collection('messages');
     app.listen(3000, function(){
         console.log("The server has started...");
     });
@@ -76,6 +80,18 @@ app.post('/authentication', (req, res) => {
         }else {
             res.send('Enter correct password');
         }
+    });
+});
+
+app.post('/messages', (req, res) => {
+    if(!req.body) return void res.sendStatus(400);
+    // don't remember token
+    const { message } = req.body;
+    coll_messages.insertOne(message, (err, result) => {
+        if(err) return void console.error(err);
+
+        console.log(result);
+        res.send(message);
     });
 });
 
