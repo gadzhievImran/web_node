@@ -21,6 +21,7 @@ const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlPar
 let dbclient;
 let db;
 let coll;
+let coll_messages;
 app.use(express.static(__dirname + "/public"));
 
 mongoClient.connect((err, client) => {
@@ -34,11 +35,34 @@ mongoClient.connect((err, client) => {
     });
 });
 
+app.post('/messages', (req, res) => {
+    if(!req.body) return res.sendStatus(400);
+
+    let { message } = req.body;
+    coll_messages.insertOne({ message }, (err, result) => {
+        if(err) {
+            console.log('err', err);
+            return void err;
+        }
+
+        console.log('result', result);
+        res.send({ message });
+    });
+});
+
 app.get('/api/users', (req, res) => {
     coll.find({}).toArray((err, users) => {
         if(err) return void console.log(err);
 
         res.send(users);
+    });
+});
+
+app.get('/api/messages', (req, res) => {
+    coll_messages.find({}).toArray((err, messages) => {
+        if(err) return void console.log(err);
+
+        res.send(messages);
     });
 });
 
@@ -80,18 +104,6 @@ app.post('/authentication', (req, res) => {
         }else {
             res.send('Enter correct password');
         }
-    });
-});
-
-app.post('/messages', (req, res) => {
-    if(!req.body) return void res.sendStatus(400);
-    // don't remember token
-    const { message } = req.body;
-    coll_messages.insertOne(message, (err, result) => {
-        if(err) return void console.error(err);
-
-        console.log(result);
-        res.send(message);
     });
 });
 
