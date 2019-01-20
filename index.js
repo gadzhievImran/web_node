@@ -50,6 +50,17 @@ app.post('/messages', (req, res) => {
     });
 });
 
+app.delete('/remove', (req, res) => {
+    const { message } = req.body;
+    console.log('message', message );
+    coll_messages.findOneAndDelete({ message }, (err, result) => {
+        if(err) return void console.log(err);
+
+        console.log('result', result);
+        res.send(result);
+    });
+});
+
 app.get('/api/users', (req, res) => {
     coll.find({}).toArray((err, users) => {
         if(err) return void console.log(err);
