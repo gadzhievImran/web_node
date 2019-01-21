@@ -52,7 +52,7 @@ app.post('/messages', (req, res) => {
 
 app.delete('/remove', (req, res) => {
     const { message } = req.body;
-    console.log('message', message );
+    console.log('message', req.body );
     coll_messages.findOneAndDelete({ message }, (err, result) => {
         if(err) return void console.log(err);
 

@@ -2,8 +2,6 @@ const WebSocket = require('ws');
 
 const server = new WebSocket.Server({ port: 8080 });
 
-console.log('ws');
-
 server.on('connection', ws => {
     ws.on('message', message => {
         if(message === 'exit') {
@@ -17,5 +15,5 @@ server.on('connection', ws => {
         })
     });
 
-    ws.send('You have connected');
+    // ws.send('You have connected');
 });
