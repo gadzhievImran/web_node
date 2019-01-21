@@ -38,8 +38,8 @@ mongoClient.connect((err, client) => {
 app.post('/messages', (req, res) => {
     if(!req.body) return res.sendStatus(400);
 
-    let { message } = req.body;
-    coll_messages.insertOne({ message }, (err, result) => {
+    let { message, hasInput } = req.body;
+    coll_messages.insertOne({ message, hasInput }, (err, result) => {
         if(err) {
             console.log('err', err);
             return void err;
@@ -52,7 +52,6 @@ app.post('/messages', (req, res) => {
 
 app.delete('/remove', (req, res) => {
     const { message } = req.body;
-    console.log('message', req.body );
     coll_messages.findOneAndDelete({ message }, (err, result) => {
         if(err) return void console.log(err);
 
@@ -87,6 +86,21 @@ app.post('/registration', (req, res) => {
 
         res.send(user);
     });
+});
+
+app.put('/update', (req, res) => {
+    if(!req.body) return void res.sendStatus(400);
+
+    const { data: { message, oldMessage }} = req.body;
+    console.log('message', message);
+    console.log('oldMessage ', oldMessage )
+
+    coll_messages.findOneAndUpdate( { message: oldMessage }, { $set: { message } }, { returnOriginal: false }, (err, result) => {
+        if(err) return void console.error(err);
+
+        console.log(result);
+        res.send(result);
+    })
 });
 
 app.post('/authentication', (req, res) => {

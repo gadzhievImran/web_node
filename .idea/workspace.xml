@@ -4,7 +4,6 @@
     <list default="true" id="07e3f648-a966-4ea1-a042-1b320f217206" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -50,7 +49,7 @@
         <counts>
           <entry key="gitignore" value="14" />
           <entry key="html" value="1255" />
-          <entry key="js" value="4095" />
+          <entry key="js" value="4640" />
           <entry key="json" value="38" />
         </counts>
       </usages-collector>
@@ -58,7 +57,7 @@
         <counts>
           <entry key="HTML" value="1255" />
           <entry key="JSON" value="38" />
-          <entry key="JavaScript" value="4095" />
+          <entry key="JavaScript" value="4640" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -80,8 +79,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="42">
-                  <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+                <state relative-caret-position="266">
+                  <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
                 </state>
               </provider>
             </entry>
@@ -93,8 +92,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="231">
-                  <caret line="55" column="34" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="34" />
+                <state relative-caret-position="518">
+                  <caret line="97" column="47" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
                 </state>
               </provider>
             </entry>
@@ -106,6 +105,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>dbclient</find>
+      <find>$set</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,8 +117,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -211,12 +211,12 @@
       <workItem from="1547150772271" duration="2991000" />
       <workItem from="1547975335398" duration="6417000" />
       <workItem from="1548002360062" duration="11274000" />
-      <workItem from="1548054286879" duration="2686000" />
+      <workItem from="1548054286879" duration="9526000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39324000" />
+    <option name="totallyTimeSpent" value="46164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1288" y="-1080" width="1920" height="1080" extended-state="0" />
@@ -276,17 +276,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="55" column="34" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="34" />
+        <state relative-caret-position="266">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="518">
+          <caret line="97" column="47" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
         </state>
       </provider>
     </entry>
