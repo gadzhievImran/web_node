@@ -38,8 +38,8 @@ mongoClient.connect((err, client) => {
 app.post('/messages', (req, res) => {
     if(!req.body) return res.sendStatus(400);
 
-    let { message, hasInput } = req.body;
-    coll_messages.insertOne({ message, hasInput }, (err, result) => {
+    let { message, hasInput, name } = req.body;
+    coll_messages.insertOne({ message, hasInput, name }, (err, result) => {
         if(err) {
             console.log('err', err);
             return void err;
@@ -92,8 +92,6 @@ app.put('/update', (req, res) => {
     if(!req.body) return void res.sendStatus(400);
 
     const { data: { message, oldMessage }} = req.body;
-    console.log('message', message);
-    console.log('oldMessage ', oldMessage )
 
     coll_messages.findOneAndUpdate( { message: oldMessage }, { $set: { message } }, { returnOriginal: false }, (err, result) => {
         if(err) return void console.error(err);
@@ -129,6 +127,19 @@ app.post('/authentication', (req, res) => {
         }else {
             res.send('Enter correct password');
         }
+    });
+});
+
+app.post('/userinfo', (req, res) => {
+    if(!req.body) return res.sendStatus(400);
+
+    const { token } = req.body;
+    const user = { token };
+
+    coll.findOne(user, (err, user) => {
+        if(err) return void err;
+        
+        res.send(user);
     });
 });
 
